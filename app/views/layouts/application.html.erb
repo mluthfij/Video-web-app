@@ -14,8 +14,7 @@
   </head>
   <body class="d-flex flex-column">
     <%= render 'layouts/components/navbar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'layouts/components/alert' if alert || notice %>
     <div class="container-fluid mt-4" id="page-content">
       <%= yield %>
     </div>
