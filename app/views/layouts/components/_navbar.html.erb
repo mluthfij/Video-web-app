@@ -11,27 +11,37 @@
             </li>
             <% if user_signed_in? %>
                 <li class="nav-item">
+                    <%= link_to 'My Video', videos_path, class:"nav-link active" %>
+                </li>
+                <li class="nav-item">
                     <%= link_to 'Create new video', new_video_path, class:"nav-link active" %>
-                </li>
-                <li class="nav-item">
-                    <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"nav-link active" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to 'Edit profile', edit_user_registration_path, class:"nav-link active" %>
-                </li>
-            <% else %>
-                <li class="nav-item">
-                    <%= link_to 'Sign in', new_user_session_path, class:"nav-link active" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to 'Sign up', new_user_registration_path, class:"nav-link active" %>
                 </li>
             <% end %>
         </ul>
-        <%# <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> %>
+        <span class="d-flex">
+            <div class="btn-group">
+                <button type="button" class="btn btn-custom dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    <%= user_signed_in? ? current_user.email : "Sign in?" %>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                    <% if user_signed_in? %>
+                        <li>
+                            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-link dropdown-item" %>
+                        </li>
+                        <li>
+                            <%= link_to 'Edit profile', edit_user_registration_path, class:"dropdown-item" %>
+                        </li>
+                    <% else %>
+                        <li>
+                            <%= link_to 'Sign in', new_user_session_path, class:"dropdown-item" %>
+                        </li>
+                        <li>
+                            <%= link_to 'Sign up', new_user_registration_path, class:"dropdown-item" %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+        </span>
         </div>
     </div>
 </nav>
