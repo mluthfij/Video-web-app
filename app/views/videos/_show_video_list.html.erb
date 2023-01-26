@@ -1,0 +1,19 @@
+<%= link_to video, class:"text-decoration-none" do %>
+    <div class="row g-2 mb-2">
+        <div class="col">
+            <img src="https://img.freepik.com/premium-vector/modern-minimal-404-error-page-website-404-error-page-found-with-dead-ghost-concept_599740-702.jpg?w=2000" class="img rounded w-100" alt="...">
+        </div>
+        <div class="col">
+            <div style="left:100px;">
+                <h6>
+                    <%= truncate(video.title, length: 50) %>
+                </h6>
+                <p>
+                    <%= video.user.email %>
+                    <br>
+                    <%= time_ago_in_words(video.created_at) %> ago
+                </p>
+            </div>
+        </div>
+    </div>
+<% end %>
