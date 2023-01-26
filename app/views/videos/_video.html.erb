@@ -13,7 +13,7 @@
       <p class="card-text">
         <%= truncate(video.user.email, length: 26) %>
         <br>
-        <%= time_ago_in_words(video.user.created_at) %> ago
+        <%= time_ago_in_words(video.created_at) %> ago
       </p>
     </div>
   </div>
