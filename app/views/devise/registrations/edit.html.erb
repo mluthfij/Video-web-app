@@ -8,6 +8,11 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <div class="form-floating">
+    <%= f.text_field :username, class:"form-control", id:"floatingInput", placeholder:"username" %>
+    <%= f.label :username, 'Username', for:"floatingInput" %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
