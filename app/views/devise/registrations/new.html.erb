@@ -9,6 +9,16 @@
       <%= f.label :email, 'Email address', for:"floatingInput" %>
     </div>
 
+    <div class="form-floating">
+      <%= f.text_field :username, class:"form-control", id:"floatingInput", placeholder:"username" %>
+      <%= f.label :username, 'Username', for:"floatingInput" %>
+    </div>
+
+    <div class="form-floating">
+      <%= f.number_field :phone_number, class:"form-control", id:"floatingInput", placeholder:"phone number" %>
+      <%= f.label :phone_number, 'Phone Number', for:"floatingInput" %>
+    </div>
+
     <%#  %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>

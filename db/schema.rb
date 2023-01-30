@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_093449) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+ActiveRecord::Schema[7.0].define(version: 2023_01_30_090233) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
