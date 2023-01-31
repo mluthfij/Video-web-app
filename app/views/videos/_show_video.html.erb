@@ -2,7 +2,16 @@
     <div class="row row-cols-1 row-cols-md-2 g-4">
     <%# <div class="row"> %>
         <div class="col col-md-8">
-            <iframe class="w-100" height="315" src="https://www.youtube.com/embed/V5KrD7CmO4o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <% if video.files.attached? %>
+                <% video.files.each do |file| %>
+                    <% if file.video? %>
+                        <video class="w-100" height="315" controls playsinline autoplay muted loop>
+                            <source src="<%= rails_blob_url(file) %>" type="<%= file.content_type %>">
+                        </video>
+                    <% end %>
+                <% end %>
+            <% end %>
+
             <h3 class="mt-2">
                 <strong>
                     <%= video.title %>
