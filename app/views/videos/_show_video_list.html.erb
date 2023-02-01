@@ -1,14 +1,11 @@
 <%= link_to video, class:"text-decoration-none" do %>
     <div class="row g-2 mb-2">
         <div class="col">
-            <% if video.files.attached? %>
-                <% video.files.each do |file| %>
-                    <% if file.video? %>
-                        <%# <video class="w-100 rounded" playsinline autoplay muted loop> %>
-                        <video class="w-100 rounded" style="background:black;height:100px;">
-                            <source src="<%= rails_blob_url(file) %>" type="<%= file.content_type %>">
-                        </video>
-                    <% end %>
+            <% if video.file.attached? %>
+                <% if video.file.video? %>
+                    <video class="w-100 rounded" style="background:black;height:100px;">
+                        <source src="<%= rails_blob_url(video.file) %>" type="<%= video.file.content_type %>">
+                    </video>
                 <% end %>
             <% end %>
         </div>
