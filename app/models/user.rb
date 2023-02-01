@@ -11,7 +11,11 @@ class User < ApplicationRecord
          validates :username, presence: true, uniqueness: { case_sensitive: false }
          validate :validate_username
          validate :validate_phone
-         
+        
+        ##...Avatar Attachment...##
+        has_one_attached :avatar
+        validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes },
+                  file_content_type: { allow: ['image/jpeg', 'image/png', 'image/gif'] }
 
          attr_writer :login
 

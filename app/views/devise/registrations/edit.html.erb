@@ -3,6 +3,21 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <% if current_user.avatar.attached? %>
+    <%# <%= image_tag(current_user.avatar.variant(resize_to_fill: [50, 50]), class: "rounded-circle") %>
+    <%= image_tag current_user.avatar, class: "rounded-circle", width:150, height:150 %>
+  <% else %>
+    <img alt="image" class="rounded-circle" src="https://www.pngitem.com/pimgs/m/661-6619328_default-avatar-png-blank-person-transparent-png.png" width="50">
+  <% end %>
+  <!--Avatar Upload Field-->
+  <div class="form-group">
+    <label class="col-sm-4 col-form-label">Avatar:
+    <% if current_user.avatar.present? %><br />Current: <%= current_user.avatar.filename.to_s %><% end %>
+    </label>
+  <div class="col-sm-8"><%= f.file_field :avatar, class: "form-control" %></div>
+  </div>
+  <!--Avatar Upload Field-->
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
