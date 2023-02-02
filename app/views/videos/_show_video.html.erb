@@ -4,12 +4,16 @@
         <div class="col col-md-8">
             <% if video.file.attached? %>
                 <% if video.file.video? %>
-                    <video class="w-100" height="315" controls playsinline autoplay muted loop>
+                    <video class="w-100 shadow" height="315" controls playsinline autoplay muted loop>
                         <source src="<%= rails_blob_url(video.file) %>" type="<%= video.file.content_type %>">
                     </video>
+                <% else %>
+                    <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100" style="height:315px;">
                 <% end %>
+            <% else %>
+                <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100" style="height:315px;">
             <% end %>
-
+            
             <h3 class="mt-2">
                 <strong>
                     <%= video.title %>

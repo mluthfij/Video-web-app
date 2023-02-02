@@ -11,7 +11,7 @@
             </li>
             <% if user_signed_in? %>
                 <li class="nav-item">
-                    <%= link_to 'My video', videos_path, class:"nav-link active" %>
+                    <%= link_to 'My video', show_profile_path(current_user.id), class:"nav-link active" %>
                 </li>
                 <li class="nav-item">
                     <%= link_to 'Create new video', new_video_path, class:"nav-link active" %>

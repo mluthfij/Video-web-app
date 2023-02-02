@@ -6,7 +6,11 @@
                     <video class="w-100 rounded" style="background:black;height:100px;">
                         <source src="<%= rails_blob_url(video.file) %>" type="<%= video.file.content_type %>">
                     </video>
+                <% else %>
+                    <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100 rounded" style="background:black;height:100px;">
                 <% end %>
+            <% else %>
+                <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100 rounded" style="background:black;height:100px;">
             <% end %>
         </div>
         <div class="col">
