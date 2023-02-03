@@ -4,17 +4,17 @@
     <%# <img class="mb-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnw129kaVvYNqP5YnDQS7mTSXGfguCRgs17z-fhdaam96IP7U2zo6UVSb9pC4Lzs5B8rI&usqp=CAU" alt="" width="72" height="57"> %>
     <h1 class="h3 mb-3 fw-normal">Sign up here</h1>
 
-    <div class="form-floating">
+    <div class="form-floating mb-3">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"floatingInput", placeholder:"name@example.com" %>
       <%= f.label :email, 'Email address', for:"floatingInput" %>
     </div>
 
-    <div class="form-floating">
+    <div class="form-floating mb-3">
       <%= f.text_field :username, class:"form-control", id:"floatingInput", placeholder:"username" %>
       <%= f.label :username, 'Username', for:"floatingInput" %>
     </div>
 
-    <div class="form-floating">
+    <div class="form-floating mb-3">
       <%= f.number_field :phone_number, class:"form-control", id:"floatingInput", placeholder:"phone number" %>
       <%= f.label :phone_number, 'Phone Number', for:"floatingInput" %>
     </div>
@@ -24,12 +24,12 @@
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %>
     <%#  %>
-    <div class="form-floating">
+    <div class="form-floating mb-3">
       <%= f.password_field :password, class:"form-control", id:"floatingPassword", placeholder:"Password" %>
       <%= f.label :password, 'Password', autocomplete: "new-password", for:"floatingPassword" %>
     </div>
 
-    <div class="form-floating">
+    <div class="form-floating mb-3">
       <%= f.password_field :password_confirmation, class:"form-control", id:"floatingPassword", placeholder:"Password" %>
       <%= f.label :password_confirmation, 'Password', autocomplete: "new-password", for:"floatingPassword" %>
     </div>
