@@ -19,7 +19,7 @@
                     <%= truncate(video.title, length: 50) %>
                 </h6>
                 <p>
-                    <%= video.user.email %>
+                    <%= video.user.username %>
                     <br>
                     <%= time_ago_in_words(video.created_at) %> ago
                 </p>

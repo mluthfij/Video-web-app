@@ -1,7 +1,7 @@
 <div class="p-5 mb-4 border rounded-3">
     <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">
-            <%= user_signed_in? ? "Wellome to our website #{current_user.email}" : 'Wellcome to our website' %>
+            <%= user_signed_in? ? "Wellome to our website #{current_user.username}" : 'Wellcome to our website' %>
         </h1>
         <p class="col-md-8 fs-4">Nice to see you!</p>
         <% if user_signed_in? %>

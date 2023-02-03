@@ -73,6 +73,6 @@ class VideosController < ApplicationController
 
     def correct_user
       @video = current_user.videos.find_by_id(params[:id])
-      redirect videos_path notice: "Only the creator can access this page!" if @video.nil?
+      redirect_to videos_path notice: "Only the creator can access this page!" if @video.nil?
     end
 end
