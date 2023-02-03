@@ -4,7 +4,7 @@
     <%= link_to "Edit this video", edit_video_path(@video), class:"btn btn-custom w-100" %>
   </div>
   <div class="col">
-    <%= button_to "Destroy this video", @video, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, method: :delete, class:"btn btn-custom w-100" %>
+    <%= button_to "Destroy this video", @video, data: { turbo_confirm: 'Are you sure?' }, method: :delete, class:"btn btn-custom w-100" %>
   </div>
 </div>
 <% end %>

@@ -13,19 +13,28 @@
 </div>
 
 <div class="row align-items-md-stretch">
-    <div class="col-md-6">
-        <div class="h-100 p-5 text-bg-dark rounded-3">
-        <h2>Change the background</h2>
-        <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-        <button class="btn btn-outline-light" type="button">Example button</button>
+    <% @users.each_with_index do |user, index| %>
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-bg-dark rounded-3">
+                <div class="row g-3">
+                    <div class="col-3">
+                        <% if user.avatar.attached? %>
+                            <%= image_tag user.avatar, width:90, height:90, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;" %>
+                        <% else %>
+                            <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:90, height:90, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;" %>
+                        <% end %>
+                    </div>
+                    <div class="col-9">
+                        <h2><%= user.username %></h2>
+                        <strong>
+                            has <%= user.videos.count %> <%= user.videos.count > 1 ? "videos" : "video" %>
+                        </strong><br><br>
+                        <%# <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p> %>
+                        <button class="btn btn-outline-light" type="button">Example button</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="h-100 p-5 bg-light text-dark border rounded-3">
-        <span>Add borders</span>
-        <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-        <button class="btn btn-secondary" type="button">Example button</button>
-        </div>
-    </div>
+    <% end %>
 </div>
 <br>
