@@ -15,22 +15,25 @@
 <div class="row align-items-md-stretch">
     <% @users.each_with_index do |user, index| %>
         <div class="col-md-6">
-            <div class="h-100 p-5 text-bg-dark rounded-3">
-                <div class="row g-3">
-                    <div class="col-3">
-                        <% if user.avatar.attached? %>
-                            <%= image_tag user.avatar, width:90, height:90, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;" %>
-                        <% else %>
-                            <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:90, height:90, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;" %>
-                        <% end %>
-                    </div>
-                    <div class="col-9">
-                        <h2><%= user.username %></h2>
-                        <strong>
-                            has <%= user.videos.count %> <%= user.videos.count > 1 ? "videos" : "video" %>
-                        </strong><br><br>
-                        <%# <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p> %>
-                        <button class="btn btn-outline-light" type="button">Example button</button>
+            <div class="card mb-2">
+                <div class="h-100 p-5 text-bg-dark rounded-3">
+                    <div class="row g-3">
+                        <div class="col-3">
+                            <% if user.avatar.attached? %>
+                                <%= link_to (image_tag user.avatar, width:90, height:90, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;"), profile_path(user) %>
+                            <% else %>
+                                <%= link_to (image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:90, height:90, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;"), profile_path(user) %>
+                            <% end %>
+                        </div>
+                        <div class="col-9">
+                            <h2><%= user.username %></h2>
+                            <strong>
+                                has <%= user.videos.count %> <%= user.videos.count > 1 ? "videos" : "video" %>
+                            </strong><br><br>
+                            <%# <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p> %>
+                            <%# <button class="btn btn-outline-light" type="button">Example button</button> %>
+                            <%= link_to 'Go to profile', profile_path(user), class:"btn btn-outline-light" %>
+                        </div>
                     </div>
                 </div>
             </div>
