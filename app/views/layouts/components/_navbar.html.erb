@@ -48,6 +48,15 @@
                             <%= link_to 'Sign up', new_user_registration_path, class:"dropdown-item" %>
                         </li>
                     <% end %>
+                    <% if cookies[:moon] %>
+                        <li>
+                            <%= button_to 'Light Mode', sun_path, method: :get, class:"dropdown-item" %>
+                        </li>
+                    <% else %>
+                        <li>
+                            <%= button_to 'Dark Mode', moon_path, method: :get, class:"dropdown-item" %>
+                        </li>
+                    <% end %>
                 </ul>
             </div>
         </span>

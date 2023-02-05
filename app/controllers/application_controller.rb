@@ -1,6 +1,18 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
     
+    def moon
+        cookies[:moon] = {
+            value: 'dark'
+        }
+        redirect_to root_path, notice: "Turn on dark mode"
+    end
+
+    def sun
+        cookies.delete(:moon)
+        redirect_to root_path, notice: "Turn off dark mode"
+    end
+
     protected
     
     def configure_permitted_parameters
