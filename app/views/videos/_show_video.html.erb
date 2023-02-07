@@ -20,7 +20,7 @@
                 </strong>
             </h3>
             <div class="my-2">
-                <%= link_to profile_path(current_user.id), class:"text-decoration-none" do %>
+                <%= link_to profile_path(video.user.id), class:"text-decoration-none" do %>
                     <% if video.user.avatar.attached? %>
                         <%= image_tag video.user.avatar, width:50, height:50, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
                     <% else %>

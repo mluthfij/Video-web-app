@@ -5,61 +5,61 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <%= link_to 'Explorer', videos_path, class:"nav-link active" %>
-            </li>
-            <% if user_signed_in? %>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <%= link_to 'Create new video', new_video_path, class:"nav-link active" %>
+                    <%= link_to 'Explorer', videos_path, class: params[:action] == "index" && params[:controller] == "videos" ? "nav-link active" : "nav-link" %>
                 </li>
-            <% end %>
-        </ul>
-        <span class="d-flex">
-            <div class="btn-group">
-                <button type="button" class="btn btn-custom dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                    <% if user_signed_in? && current_user.avatar.attached? %>
-                        <%= image_tag current_user.avatar, width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
-                    <% else %>
-                        <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
-                    <% end %>
-                    <%= user_signed_in? ? current_user.email : "Sign in?" %>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <% if user_signed_in? %>
-                        <li>
-                            <%= link_to 'My profile', profile_path(current_user), class:"dropdown-item" %>
-                        </li>
-                        <li>
-                            <%= link_to 'My videos', show_profile_path(current_user.id), class:"dropdown-item" %>
-                        </li>
-                        <li>
-                            <%= link_to 'Edit profile', edit_user_registration_path, class:"dropdown-item" %>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-link dropdown-item" %>
-                        </li>
-                    <% else %>
-                        <li>
-                            <%= link_to 'Sign in', new_user_session_path, class:"dropdown-item" %>
-                        </li>
-                        <li>
-                            <%= link_to 'Sign up', new_user_registration_path, class:"dropdown-item" %>
-                        </li>
-                    <% end %>
-                    <% if cookies[:moon] %>
-                        <li>
-                            <%= button_to 'Light Mode', sun_path, method: :get, class:"dropdown-item" %>
-                        </li>
-                    <% else %>
-                        <li>
-                            <%= button_to 'Dark Mode', moon_path, method: :get, class:"dropdown-item" %>
-                        </li>
-                    <% end %>
-                </ul>
-            </div>
-        </span>
+                <% if user_signed_in? %>
+                    <li class="nav-item">
+                        <%= link_to 'Create new video', new_video_path, class: params[:action] == "new" && params[:controller] == "videos" ? "nav-link active" : "nav-link" %>
+                    </li>
+                <% end %>
+            </ul>
+            <span class="d-flex">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-custom dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        <% if user_signed_in? && current_user.avatar.attached? %>
+                            <%= image_tag current_user.avatar, width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+                        <% else %>
+                            <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+                        <% end %>
+                        <%= user_signed_in? ? current_user.email : "Sign in?" %>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <% if user_signed_in? %>
+                            <li>
+                                <%= link_to 'My profile', profile_path(current_user), class: params[:action] == "index" && params[:controller] == "profiles" ? "dropdown-item active" : "dropdown-item" %>
+                            </li>
+                            <li>
+                                <%= link_to 'My videos', show_profile_path(current_user.id), class: params[:action] == "show_profile" && params[:controller] == "profiles" ? "dropdown-item active" : "dropdown-item" %>
+                            </li>
+                            <li>
+                                <%= link_to 'Edit profile', edit_user_registration_path, class: params[:action] == "edit" && params[:controller] == "devise/registrations" ? "dropdown-item active" : "dropdown-item" %>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-link dropdown-item" %>
+                            </li>
+                        <% else %>
+                            <li>
+                                <%= link_to 'Sign in', new_user_session_path, class:"dropdown-item" %>
+                            </li>
+                            <li>
+                                <%= link_to 'Sign up', new_user_registration_path, class:"dropdown-item" %>
+                            </li>
+                        <% end %>
+                        <% if cookies[:moon] %>
+                            <li>
+                                <%= button_to ' Light mode', sun_path, method: :get, class:"dropdown-item bi bi-sun" %>
+                            </li>
+                        <% else %>
+                            <li>
+                                <%= button_to ' Dark Mode', moon_path, method: :get, class:"dropdown-item bi bi-moon" %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+            </span>
         </div>
     </div>
 </nav>

@@ -8,8 +8,12 @@ class User < ApplicationRecord
 
          has_many :videos, dependent: :destroy
          
-         validates :username, presence: true, uniqueness: { case_sensitive: false }
-         validates :phone_number, presence: true, uniqueness: { case_sensitive: false }
+         validates :username, presence: true, 
+                    uniqueness: { case_sensitive: false },
+                    length: { minimum: 1, maximum: 100 }
+         validates :phone_number, presence: true, 
+                    uniqueness: { case_sensitive: false },
+                    length: { minimum: 12, maximum: 20 }
          validate :validate_username
          validate :validate_phone
         

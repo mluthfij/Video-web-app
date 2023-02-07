@@ -5,12 +5,12 @@ class ApplicationController < ActionController::Base
         cookies[:moon] = {
             value: 'dark'
         }
-        redirect_to root_path, notice: "Turn on dark mode"
+        redirect_to request.referer, notice: "Turn on dark mode"
     end
 
     def sun
         cookies.delete(:moon)
-        redirect_to root_path, notice: "Turn off dark mode"
+        redirect_to request.referer, notice: "Turn off dark mode"
     end
 
     protected
