@@ -8,6 +8,28 @@ class VideosController < ApplicationController
     @videos = Video.all.order(cached_votes_score: :desc)
   end
 
+  def upvote
+    @video = Video.find(params[:id])
+    if current_user.voted_up_on? @video
+      @video.unvote_by current_user
+    else
+      @video.upvote_by current_user
+    end
+    # render "vote.js.erb"
+    redirect_to request.referer, notice: "You like this video."
+  end
+  
+  def downvote
+    @video = Video.find(params[:id])
+    if current_user.voted_down_on? @video
+      @video.unvote_by current_user
+    else
+      @video.downvote_by current_user
+    end
+    # render "vote.js.erb"
+    redirect_to request.referer, notice: "You dislike this video."
+  end
+
   # GET /videos/1 or /videos/1.json
   def show
     @videos = Video.all.order(cached_votes_score: :desc)
@@ -58,26 +80,6 @@ class VideosController < ApplicationController
       format.html { redirect_to videos_url, notice: "Video was successfully destroyed." }
       format.json { head :no_content }
     end
-  end
-
-  def upvote
-    @video = Video.find(params[:id])
-    if current_user.voted_up_on? @video
-      @video.unvote_by current_user
-    else
-      @video.upvote_by current_user
-    end
-    render "vote.js.erb"
-  end
-
-  def downvote
-    @video = Video.find(params[:id])
-    if current_user.voted_down_on? @video
-      @video.unvote_by current_user
-    else
-      @video.downvote_by current_user
-    end
-    render "vote.js.erb"
   end
 
   private
