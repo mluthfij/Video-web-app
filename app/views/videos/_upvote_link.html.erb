@@ -1,5 +1,5 @@
 <%= content_tag "div", id: "upvote-#{video.id}" do %>
-  <%= link_to upvote_video_path(video), method: :patch, remote: true do %>
+  <%= link_to downvote_video_path(video), method: :patch, remote: true, data: { disable_with: "voting..." } do %>
     <% if current_user.voted_up_on? video %>
       unvote
     <% else %>
