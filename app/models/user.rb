@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:login]
 
+         acts_as_voter
+
          has_many :videos, dependent: :destroy
          
          validates :username, presence: true, 

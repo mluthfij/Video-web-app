@@ -5,12 +5,12 @@ class VideosController < ApplicationController
 
   # GET /videos or /videos.json
   def index
-    @videos = Video.all
+    @videos = Video.all.order(cached_votes_score: :desc)
   end
 
   # GET /videos/1 or /videos/1.json
   def show
-    @videos = Video.all
+    @videos = Video.all.order(cached_votes_score: :desc)
   end
 
   # GET /videos/new
@@ -58,6 +58,26 @@ class VideosController < ApplicationController
       format.html { redirect_to videos_url, notice: "Video was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+    @video = Video.find(params[:id])
+    if current_user.voted_up_on? @video
+      @video.unvote_by current_user
+    else
+      @video.upvote_by current_user
+    end
+    render "vote.js.erb"
+  end
+
+  def downvote
+    @video = Video.find(params[:id])
+    if current_user.voted_down_on? @video
+      @video.unvote_by current_user
+    else
+      @video.downvote_by current_user
+    end
+    render "vote.js.erb"
   end
 
   private
