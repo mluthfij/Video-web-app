@@ -18,12 +18,16 @@
                     <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100 rounded" style="background:black;height:200px;">
                   <% end %>
                   <div class="card-body">
-                  <%#  %>
-                    <%= render "videos/upvote_link", video: video %>
-                    <%= render "videos/downvote_link", video: video %>
-                    <hr>
-                    <%= render "videos/votes_score", video: video %>
-                  <%#  %>
+                    <% if user_signed_in? %>
+                      <div class="row mb-4">
+                        <div class="col">
+                          <%= render "videos/upvote_link", video: video %>
+                        </div>
+                        <div class="col text-end">
+                          <%= render "videos/downvote_link", video: video %>
+                        </div>
+                      </div>
+                    <% end %>
                     <%= render video %>
                   </div>
               </div>

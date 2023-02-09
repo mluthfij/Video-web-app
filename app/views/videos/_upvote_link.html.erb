@@ -1,9 +1,9 @@
 <%= content_tag "div", id: "upvote-#{video.id}" do %>
   <%= link_to upvote_video_path(video), remote: true, data: { turbo_disable_with: "voting...", turbo_method: :patch } do %>
     <% if current_user.voted_up_on? video %>
-      unvote
+      <i class="bi bi-hand-thumbs-up"></i>
     <% else %>
-      vote!
+      <i class="bi bi-hand-thumbs-up-fill"></i>
     <% end %>
   <% end %>
 <% end %>
