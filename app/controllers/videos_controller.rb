@@ -12,23 +12,25 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     if current_user.voted_up_on? @video
       @video.unvote_by current_user
+      redirect_to request.referer, notice: "You dislike this video."
     else
       @video.upvote_by current_user
+      redirect_to request.referer, notice: "You like this video."
     end
     # render "vote.js.erb"
-    redirect_to request.referer, notice: "You like this video."
+    # redirect_to request.referer, notice: "You like this video."
   end
   
-  def downvote
-    @video = Video.find(params[:id])
-    if current_user.voted_down_on? @video
-      @video.unvote_by current_user
-    else
-      @video.downvote_by current_user
-    end
-    # render "vote.js.erb"
-    redirect_to request.referer, notice: "You dislike this video."
-  end
+  # def downvote
+  #   @video = Video.find(params[:id])
+  #   if current_user.voted_down_on? @video
+  #     @video.unvote_by current_user
+  #   else
+  #     @video.downvote_by current_user
+  #   end
+  #   # render "vote.js.erb"
+  #   redirect_to request.referer, notice: "You dislike this video."
+  # end
 
   # GET /videos/1 or /videos/1.json
   def show

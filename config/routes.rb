@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :videos do
     member do
       patch "upvote", to: "videos#upvote"
-      patch "downvote", to: "videos#downvote"
+      # patch "downvote", to: "videos#downvote"
     end
   end
 
