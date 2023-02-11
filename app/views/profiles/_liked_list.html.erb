@@ -1,0 +1,21 @@
+<h1 class="my-3">Activity</h1>
+<hr>
+<% @videos.each do |video| %>
+  <% if video.count_votes_up != 0 %>
+    <% video.get_upvotes.each do |vote| %>
+      <% if vote.voter.id != current_user.id %>
+        <strong>
+          <%= vote.voter.username %>
+        </strong>
+        liked
+        <strong>
+          <%= vote.votable.title %>
+        </strong>
+        <%= time_ago_in_words(vote.created_at) %>
+        ago
+        <br>
+        <hr>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

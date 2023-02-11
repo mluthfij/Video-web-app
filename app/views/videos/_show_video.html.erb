@@ -1,6 +1,5 @@
 <div id="<%= dom_id video %>">
     <div class="row row-cols-1 row-cols-md-2 g-4">
-    <%# <div class="row"> %>
         <div class="col col-md-8">
             <% if video.file.attached? %>
                 <% if video.file.video? %>
@@ -13,21 +12,29 @@
             <% else %>
                 <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100" style="height:315px;">
             <% end %>
-            
             <h3 class="mt-2">
                 <strong>
                     <%= video.title %>
                 </strong>
             </h3>
-            <div class="my-2">
-                <%= link_to profile_path(video.user.id), class:"text-decoration-none" do %>
-                    <% if video.user.avatar.attached? %>
-                        <%= image_tag video.user.avatar, width:50, height:50, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
-                    <% else %>
-                        <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:50, height:50, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+            <div class="row">
+                <div class="col">
+                    <div class="my-2">
+                        <%= link_to profile_path(video.user.id), class:"text-decoration-none" do %>
+                            <% if video.user.avatar.attached? %>
+                                <%= image_tag video.user.avatar, width:50, height:50, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+                            <% else %>
+                                <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:50, height:50, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+                            <% end %>
+                            <%= video.user.username %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="col">
+                    <% if user_signed_in? %>
+                        <%= render "videos/upvote_link", video: video %>
                     <% end %>
-                    <%= video.user.username %>
-                <% end %>
+                </div>
             </div>
             <div class="card my-3" style="background:var(--bs-dark-border-subtle);">
                 <div class="card-body">

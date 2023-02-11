@@ -1,9 +1,22 @@
 <%= content_tag "div", id: "upvote-#{video.id}" do %>
-  <%= link_to upvote_video_path(video), remote: true, data: { turbo_disable_with: "voting...", turbo_method: :patch } do %>
-    <% if current_user.voted_up_on? video %>
-      <i class="bi bi-hand-thumbs-up-fill"></i>
-    <% else %>
-      <i class="bi bi-hand-thumbs-up"></i>
+  <div class="btn-group">
+    <%= link_to upvote_video_path(video), class:"btn btn-primary active", remote: true, data: { turbo_disable_with: "voting...", turbo_method: :patch } do %>
+      <% if current_user.voted_up_on? video %>
+        <i class="bi bi-hand-thumbs-up-fill"></i>
+      <% else %>
+        <i class="bi bi-hand-thumbs-up"></i>
+      <% end %>
+      <%= video.cached_votes_up %> <%= video.cached_votes_score < 2 ? "like" : "likes" %>
     <% end %>
-  <% end %>
+    <%#  %>
+    <%= link_to downvote_video_path(video), class:"btn btn-primary active", remote: true, data: { turbo_disable_with: "voting...", turbo_method: :patch } do %>
+      <% if current_user.voted_down_on? video %>
+        <i class="bi bi-hand-thumbs-down-fill"></i>
+      <% else %>
+        <i class="bi bi-hand-thumbs-down"></i>
+      <% end %>
+      <%= video.cached_votes_down %> <%= video.cached_votes_score < 2 ? "dislike" : "dislikes" %>
+    <% end %>
+    <%# <%= render "videos/votes_score", video: video %>
+  </div>
 <% end %>

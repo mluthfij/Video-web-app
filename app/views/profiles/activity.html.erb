@@ -1,0 +1,41 @@
+<ul class="list-group">
+  <% @videos.each do |video| %>
+    <li class="list-group-item list-group-item-action">
+      <div class="row g-2">
+          <div class="col">
+
+              <% if video.file.attached? %>
+                  <% if video.file.video? %>
+                      <video class="w-100 rounded" style="background:black;height:100px;">
+                          <source src="<%= rails_blob_url(video.file) %>" type="<%= video.file.content_type %>">
+                      </video>
+                  <% else %>
+                      <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100 rounded" style="background:black;height:100px;">
+                  <% end %>
+              <% else %>
+                  <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100 rounded" style="background:black;height:100px;">
+              <% end %>
+          
+          </div>
+          <div class="col">
+              <div style="left:100px;">
+          
+                  <h6>
+                    <p>
+                      <%= video.title %>
+                      liked by <% video.get_upvotes.voters.each do |voter| %>
+                        <%= voter.username %>
+                      <% end %>
+                    </p>
+                      <%# <%= truncate(video.title, length: 50) %>
+                  </h6>
+                  <p>
+                      <%= time_ago_in_words(video.created_at) %> ago
+                  </p>
+          
+              </div>
+          </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

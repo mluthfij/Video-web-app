@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mb-4">
     <div class="col-md-4">
         <div class="text-center">
             <span class="badge rounded-pill btn-custom">
@@ -7,7 +7,7 @@
                 </strong>
             </span><br>
             <% if @user.avatar.attached? %>
-                <%= image_tag @user.avatar, width:200, height:200, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;" %>
+                <%= link_to (image_tag @user.avatar, width:200, height:200, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;"), @user.avatar.blob %>
             <% else %>
                 <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:200, height:200, class:"rounded-circle border shadow my-3 mb-3", style:"object-fit:contain;background:black;" %>
             <% end %>
@@ -26,45 +26,12 @@
         </div>
     </div>
     <div class="col-md-8">
-        <div id="videos">
-            <% if !@videos.blank? %>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <% @videos.order(id: :desc).each_with_index do |video, index| %>
-                        <% if index < 3 %>
-                            <div class="col">
-                                <div class="card shadow h-100">
-                                <%= link_to video, class:"text-decoration-none" do %>
-                                    <div class="card border border-0">
-                                        <% if video.file.attached? %>
-                                            <% if video.file.video? %>
-                                                <video class="w-100 rounded" style="background:black;height:200px;">
-                                                    <source src="<%= rails_blob_url(video.file) %>" type="<%= video.file.content_type %>">
-                                                </video>
-                                            <% else %>
-                                                <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100 rounded" style="background:black;height:200px;">
-                                            <% end %>
-                                        <% else %>
-                                            <img src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/images/2021-02-15-01-20-07-256c43.png" alt="" class="w-100 rounded" style="background:black;height:200px;">
-                                        <% end %>
-                                        <div class="card-body">
-                                            <%= render video %>
-                                        </div>
-                                    </div>
-                                <% end %>
-                                </div>
-                            </div>
-                        <% end %>
-                    <% end %>
-                </div>
-            <% elsif @videos.blank? %>
-                <div class="alert alert-warning" style="width: 38rem; margin:auto;" role="alert">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur dolores sit necessitatibus vero ab. Voluptatem qui, mollitia quisquam cupiditate recusandae nihil officia voluptatum ut obcaecati, magnam sint, magni quas illo.
-                </div>
-            <% end %>
+        <div class="mb-4">
+            <%= render 'profiles/card_video', obj: @videos %>
         </div>
-        <% if @videos.count > 3 %>
-            <div class="d-grid gap-2 my-4">
-                <%= link_to "Show all videos", show_profile_path(@user.id), class:"btn btn-custom" %>
+        <% if user_signed_in? && current_user.id == @user.id %>
+            <div class="mb-4">
+                <%= render 'profiles/liked_list', obj: @videos %>
             </div>
         <% end %>
     </div>
