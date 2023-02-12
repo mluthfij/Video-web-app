@@ -1,21 +1,24 @@
 <h1 class="my-3">Activity</h1>
 <hr>
-<% @videos.each do |video| %>
-  <% if video.count_votes_up != 0 %>
+<% @videos.each_with_index do |video, index| %>
+  <% if video.count_votes_up != 0 && index < 3 %>
     <% video.get_upvotes.each do |vote| %>
       <% if vote.voter.id != current_user.id %>
         <strong>
-          <%= vote.voter.username %>
+        <%= vote.voter.username %>
         </strong>
         liked
         <strong>
-          <%= vote.votable.title %>
+        <%= vote.votable.title %>
         </strong>
         <%= time_ago_in_words(vote.created_at) %>
         ago
-        <br>
         <hr>
       <% end %>
     <% end %>
+  <% elsif video.count_votes_up != 0 && index >= 3 %>
+    <div class="d-grid gap-2 my-4">
+        <%= link_to "Show all activity", activity_path(@user.id), class:"btn btn-custom" %>
+    </div>
   <% end %>
 <% end %>
