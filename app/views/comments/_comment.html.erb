@@ -1,16 +1,30 @@
-<p>
-    <%= comment.content %>
+<div class="mb-3">
+    <strong>    
+        Username
+    </strong>
     <%= time_ago_in_words(comment.created_at) %>
-</p>
+    <p>
+        <%= comment.content %>
+    </p>
 
-<p>
-    <%= button_to 'delete', [comment.video, comment], data: { turbo_confirm: 'Are you sure?' }, method: :delete %>
-</p>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-custom" type="button" data-bs-toggle="collapse" data-bs-target="#id<%= comment.id %>" aria-expanded="false" aria-controls="collapseExample">
+                Reply
+            </button>
+        </div>
+        <div class="col text-end">
+            <%= button_to 'delete', [comment.video, comment], data: { turbo_confirm: 'Are you sure?' }, method: :delete, class:"btn btn-custom" %>
+        </div>
+    </div>
 
+    <div class="collapse" id="id<%= comment.id %>">
+        <div class="card card-body">
+            <%= render partial: 'comments/form', locals: { video: comment.video, parent: comment } %>
+        </div>
+    </div>
+</div>
 
-Reply
-<%= render partial: 'comments/form', locals: { video: comment.video, parent: comment } %>
-
-<div class="subcomment" style="padding-left: 20px;">
+<div class="subcomment" style="padding-left: <%= !comment.parent_id.nil? ? '40px' : '0px' %>;">
     <%= render comment.comments.order(id: :desc) %>
 </div>

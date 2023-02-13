@@ -1,24 +1,13 @@
 <% if user_signed_in? && @video.user.id == current_user.id %>
-<div class="row mb-2 g-1">
-  <div class="col">
-    <%= link_to "Edit this video", edit_video_path(@video), class:"btn btn-custom w-100" %>
+  <div class="row mb-2 g-1">
+    <div class="col">
+      <%= link_to "Edit this video", edit_video_path(@video), class:"btn btn-custom w-100" %>
+    </div>
+    <div class="col">
+      <%= button_to "Destroy this video", @video, data: { turbo_confirm: 'Are you sure?' }, method: :delete, class:"btn btn-custom w-100" %>
+    </div>
   </div>
-  <div class="col">
-    <%= button_to "Destroy this video", @video, data: { turbo_confirm: 'Are you sure?' }, method: :delete, class:"btn btn-custom w-100" %>
-  </div>
-</div>
 <% end %>
 
 <%= render 'videos/show_video', video: @video %>
 <%# <%= button_to 'Delete', @video, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger ml-3" %>
-
-<h1>
-  <%= @video.comments.count %> Comments
-</h1>
-
-<p>
-  <%= render @video.comments.where(parent_id: nil).order(id: :desc) %>
-  <hr>
-  <%= render partial: 'comments/form', locals: { video: @video, parent: nil } %>
-</p>
-

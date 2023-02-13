@@ -8,7 +8,6 @@
       <% end %>
       <%= video.cached_votes_up %> <%= video.cached_votes_score < 2 ? "like" : "likes" %>
     <% end %>
-    <%#  %>
     <%= link_to downvote_video_path(video), class:"btn btn-primary active", remote: true, data: { turbo_disable_with: "voting...", turbo_method: :patch } do %>
       <% if current_user.voted_down_on? video %>
         <i class="bi bi-hand-thumbs-down-fill"></i>

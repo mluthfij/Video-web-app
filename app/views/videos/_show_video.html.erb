@@ -49,6 +49,16 @@
                     </p>
                 </div>
             </div>
+            <div class="mb-2">
+                <h1 class="my-4">
+                    <%= @video.comments.count %> Comments
+                </h1>
+                <%= render partial: 'comments/form', locals: { video: @video, parent: nil } %>
+                <hr>
+                <p>
+                    <%= render @video.comments.where(parent_id: nil).order(id: :desc) %>
+                </p>
+            </div>
         </div>
         <div class="col col-md-4">
             <div id="videos">

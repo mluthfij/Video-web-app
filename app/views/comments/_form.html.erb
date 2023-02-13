@@ -1,14 +1,24 @@
-<%= form_for([@video, @video.comments.build]) do |f| %>
+<div class="mb-2">
+    <%= link_to profile_path(current_user.id), class:"text-decoration-none" do %>
+        <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, width:50, height:50, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+        <% else %>
+            <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:50, height:50, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
+        <% end %>
+        <%= current_user.username %>
+    <% end %>
+</div>
 
+<%= form_for([@video, @video.comments.build]) do |f| %>
     <% if !parent.nil? %>
         <%= f.hidden_field :parent_id, value:parent.id %>
     <% end %>
     
-    <P>
-        <%= f.label :content %>
-        <%= f.text_field :content %>
-    </P>
-    <p>
-        <%= f.submit %>
-    </p>
+    <div class="form-floating mb-3">
+        <%= f.text_field :content, class:"form-control", placeholder:"Comment here" %>
+        <label for="floatingInput">Comment here...</label>
+    </div>
+    <div class="text-end">
+        <%= f.submit class:"btn btn-custom" %>
+    </div>
 <% end %>
