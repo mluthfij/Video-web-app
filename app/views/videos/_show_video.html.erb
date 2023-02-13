@@ -53,10 +53,10 @@
                 <h1 class="my-4">
                     <%= @video.comments.count %> Comments
                 </h1>
-                <%= render partial: 'comments/form', locals: { video: @video, parent: nil } %>
+                <%= render partial: 'comments/form', locals: { video: @video, parent: nil } if user_signed_in? %>
                 <hr>
                 <p>
-                    <%= render @video.comments.where(parent_id: nil).order(id: :desc) %>
+                    <%= render @video.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
                 </p>
             </div>
         </div>

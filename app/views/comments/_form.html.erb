@@ -10,12 +10,11 @@
 </div>
 
 <%= form_for([@video, @video.comments.build]) do |f| %>
-    <% if !parent.nil? %>
-        <%= f.hidden_field :parent_id, value:parent.id %>
-    <% end %>
+    <%= f.hidden_field :user_id, value:current_user.id %>
+    <%= f.hidden_field :parent_id, value:parent.id if !parent.nil? %>
     
     <div class="form-floating mb-3">
-        <%= f.text_field :content, class:"form-control", placeholder:"Comment here" %>
+        <%= f.text_area :content, class:"form-control", placeholder:"Comment here", style:"height:80px;" %>
         <label for="floatingInput">Comment here...</label>
     </div>
     <div class="text-end">

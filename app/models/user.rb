@@ -9,6 +9,7 @@ class User < ApplicationRecord
          acts_as_voter
 
          has_many :videos, dependent: :destroy
+         has_many :comments, dependent: :destroy
          
          validates :username, presence: true, 
                     uniqueness: { case_sensitive: false },
