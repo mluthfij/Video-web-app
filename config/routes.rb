@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   
   
   resources :videos do
+    resources :comments
     member do
       patch "upvote", to: "videos#upvote"
       patch "downvote", to: "videos#downvote"

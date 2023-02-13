@@ -11,3 +11,14 @@
 
 <%= render 'videos/show_video', video: @video %>
 <%# <%= button_to 'Delete', @video, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger ml-3" %>
+
+<h1>
+  <%= @video.comments.count %> Comments
+</h1>
+
+<p>
+  <%= render @video.comments.where(parent_id: nil).order(id: :desc) %>
+  <hr>
+  <%= render partial: 'comments/form', locals: { video: @video, parent: nil } %>
+</p>
+

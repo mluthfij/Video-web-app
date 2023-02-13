@@ -1,0 +1,14 @@
+<%= form_for([@video, @video.comments.build]) do |f| %>
+
+    <% if !parent.nil? %>
+        <%= f.hidden_field :parent_id, value:parent.id %>
+    <% end %>
+    
+    <P>
+        <%= f.label :content %>
+        <%= f.text_field :content %>
+    </P>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

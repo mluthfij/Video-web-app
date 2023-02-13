@@ -1,0 +1,16 @@
+<p>
+    <%= comment.content %>
+    <%= time_ago_in_words(comment.created_at) %>
+</p>
+
+<p>
+    <%= button_to 'delete', [comment.video, comment], data: { turbo_confirm: 'Are you sure?' }, method: :delete %>
+</p>
+
+
+Reply
+<%= render partial: 'comments/form', locals: { video: comment.video, parent: comment } %>
+
+<div class="subcomment" style="padding-left: 20px;">
+    <%= render comment.comments.order(id: :desc) %>
+</div>

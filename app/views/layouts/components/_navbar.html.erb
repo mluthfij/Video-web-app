@@ -23,7 +23,7 @@
                         <% else %>
                             <%= image_tag "https://img.freepik.com/free-icon/important-person_318-10744.jpg?w=2000", width:25, height:25, class:"rounded-circle border shadow", style:"object-fit:contain;background:black;" %>
                         <% end %>
-                        <%= user_signed_in? ? current_user.email : "Sign in?" %>
+                        <%= user_signed_in? ? current_user.username : "Sign in?" %>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-lg-end">
                         <% if user_signed_in? %>
